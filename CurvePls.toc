@@ -2,6 +2,6 @@
 ## Title: CurvePls
 ## Author: Sorgsvart aka Galad
 ## Notes: For the daily pug life
-## Version: 0.1.0
+## Version: 1.0.1
 
 Core.lua
