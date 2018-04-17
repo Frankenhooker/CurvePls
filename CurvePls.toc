@@ -2,6 +2,9 @@
 ## Title: CurvePls
 ## Author: Sorgsvart aka Galad
 ## Notes: For the daily pug life
-## Version: 1.0.1
+## OptionalDeps: Ace3
+## X-Embeds: Ace3
+## Version: 1.2.0
 
 Core.lua
+embeds.xml
