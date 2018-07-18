@@ -53,8 +53,11 @@ function CurvePlsHandler1(msg, editbox)
 if msg == 'help' then
   print("Enter /curve month,day,year for curve achievement, /key month,day,year for keystone master (For Example /curve 6,6,17). \n If no dates are given, the current date will be taken.")
  elseif msg == '' then
-  weekday, month, day, year = CalendarGetDate();
-  year = year - 2000
+  local date = C_Calendar.GetDate();
+  local year = date.year;
+  local day = date.monthDay;
+  local month = date.month;
+  year = year - 2000;
   CreateCurveLink(month, day, year, Name)
   else
   local m, d, y = strsplit(",",msg)
@@ -69,8 +72,11 @@ local function handler2(msg, editbox)
 if msg == 'help' then
   print("Enter /curve month,day,year for curve achievement, /key month,day,year for keystone master (For Example /curve 6,6,17). \n If no dates are given, the current date will be taken.")
  elseif msg == '' then
-  weekday, month, day, year = CalendarGetDate();
-  year = year - 2000
+  local date = C_Calendar.GetDate();
+  local year = date.year;
+  local day = date.monthDay;
+  local month = date.month;
+  year = year - 2000;
   CreateKeyMasterLink(month, day, year, Name)
   else
   local m, d, y = strsplit(",",msg)
@@ -90,7 +96,10 @@ local a, m, d, y = strsplit(",",msg)
 IDNumber, Name = GetAchievementInfo(a) -- Get Name so we dont have to localize by hand
   if Name == nil then print("Invalid Achivement ID!")
   elseif string.len(msg) < 6 then
-  weekday, month, day, year = CalendarGetDate();
+  local date = C_Calendar.GetDate();
+  local year = date.year;
+  local day = date.monthDay;
+  local month = date.month;
   DEFAULT_CHAT_FRAME:AddMessage("\124cffffff00\124Hachievement:".. a ..":"..string.gsub(UnitGUID("player"), '0x', '')..":1:".. month ..":".. day ..":".. year-2000 ..":4294967295:4294967295:4294967295:4294967295\124h[".. Name .."]\124h\124r")
   elseif string.len(msg) > 5 then if string.len(y) > 2 then y=y-2000 end
   DEFAULT_CHAT_FRAME:AddMessage("\124cffffff00\124Hachievement:".. a ..":"..string.gsub(UnitGUID("player"), '0x', '')..":1:".. m ..":".. d ..":".. y ..":4294967295:4294967295:4294967295:4294967295\124h[".. Name .."]\124h\124r")
