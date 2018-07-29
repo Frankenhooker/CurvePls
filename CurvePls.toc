@@ -5,6 +5,10 @@
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3
 ## Version: 1.3.0a
+## OptionalDeps: Ace3
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
 
 Core.lua
-embeds.xml
