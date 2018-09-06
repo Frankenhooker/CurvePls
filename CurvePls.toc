@@ -4,7 +4,7 @@
 ## Notes: For the daily pug life
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3
-## Version: 1.4.1
+## Version: 1.4.2
 
 #@no-lib-strip@
 embeds.xml

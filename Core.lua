@@ -18,12 +18,12 @@ function CreateCurveLink(m, d, y, name)
     if string.len(y) > 2 then
         y = y - 2000
     end
-    IDNumber, Name = GetAchievementInfo(12110) -- Get Name so we dont have to localize by hand
+    IDNumber, Name = GetAchievementInfo(12536) -- Get Name so we dont have to localize by hand
     if GetLocale == "enUS" then
-        CurvePls:Print("\124cffffff00\124Hachievement:12110:"
+        CurvePls:Print("\124cffffff00\124Hachievement:12536:"
                 .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. m .. ":" .. d .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
     else
-        CurvePls:Print("\124cffffff00\124Hachievement:12110:"
+        CurvePls:Print("\124cffffff00\124Hachievement:12536:"
                 .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. d .. ":" .. m .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
     end
 end
