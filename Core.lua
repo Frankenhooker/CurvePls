@@ -2,6 +2,7 @@ local CurvePls = LibStub("AceAddon-3.0"):NewAddon("CurvePls", "AceConsole-3.0")
 local AceGUI = LibStub("AceGUI-3.0")
 
 local frame = AceGUI:Create("Frame")
+local currentCurveId = 14068;
 
 function CurvePls:OnInitialize()
     self:Print("Loaded.")
@@ -18,12 +19,12 @@ function CreateCurveLink(m, d, y, name)
     if string.len(y) > 2 then
         y = y - 2000
     end
-    IDNumber, Name = GetAchievementInfo(12536) -- Get Name so we dont have to localize by hand
+    IDNumber, Name = GetAchievementInfo(currentCurveId) -- Get Name so we dont have to localize by hand
     if GetLocale == "enUS" then
-        CurvePls:Print("\124cffffff00\124Hachievement:12536:"
+        CurvePls:Print("\124cffffff00\124Hachievement:" .. currentCurveId .. ":"
                 .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. m .. ":" .. d .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
     else
-        CurvePls:Print("\124cffffff00\124Hachievement:12536:"
+        CurvePls:Print("\124cffffff00\124Hachievement:" .. currentCurveId .. ":"
                 .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. d .. ":" .. m .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
     end
 end
