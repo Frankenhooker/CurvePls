@@ -4,6 +4,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 local frame = AceGUI:Create("Frame")
 local currentCurveId = 14460;
 local currentKeyMasterId = 14532;
+local currentSeasonStartTime = 1607475681;
 local USRegion = 1;
 
 function CurvePls:OnInitialize()
@@ -98,11 +99,23 @@ end
 function HandleCurve(msg, editbox)
     if msg == 'help' then
         CurvePls:Print("Enter /curve month,day,year for curve achievement, /key month,day,year for keystone master (For Example /curve 6,6,17). \n If no dates are given, the current date will be taken.")
-    elseif msg == '' then
-        local date = C_DateAndTime.GetCurrentCalendarTime();
-        local year = date.year;
-        local day = date.monthDay;
-        local month = date.month;
+    elseif msg == 'rnd' or msg == 'random' or msg == '' then
+        local datetime;
+        local day;
+        if msg == '' then
+            datetime = C_DateAndTime.GetCurrentCalendarTime();
+
+            day = datetime.monthDay;
+        else
+            local currentTime = GetServerTime();
+            local rndTime =  math.random(currentSeasonStartTime, currentTime);
+            datetime = date('*t', rndTime);
+
+            day = datetime.day;
+        end
+
+        local year = datetime.year;
+        local month = datetime.month;
         year = year - 2000;
         CreateCurveLink(month, day, year, Name)
     else
