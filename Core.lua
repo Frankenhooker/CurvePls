@@ -2,7 +2,9 @@ local CurvePls = LibStub("AceAddon-3.0"):NewAddon("CurvePls", "AceConsole-3.0")
 local AceGUI = LibStub("AceGUI-3.0")
 
 local frame = AceGUI:Create("Frame")
-local currentCurveId = 14068;
+local currentCurveId = 14460;
+local currentKeyMasterId = 14532;
+local USRegion = 1;
 
 function CurvePls:OnInitialize()
     self:Print("Loaded.")
@@ -20,12 +22,12 @@ function CreateCurveLink(m, d, y, name)
         y = y - 2000
     end
     IDNumber, Name = GetAchievementInfo(currentCurveId) -- Get Name so we dont have to localize by hand
-    if GetLocale == "enUS" then
-        CurvePls:Print("\124cffffff00\124Hachievement:" .. currentCurveId .. ":"
-                .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. m .. ":" .. d .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
-    else
+    if GetCurrentRegion() == USRegion then
         CurvePls:Print("\124cffffff00\124Hachievement:" .. currentCurveId .. ":"
                 .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. d .. ":" .. m .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
+    else
+        CurvePls:Print("\124cffffff00\124Hachievement:" .. currentCurveId .. ":"
+                .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. m .. ":" .. d .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
     end
 end
 
@@ -33,18 +35,18 @@ function CreateKeyMasterLink(m, d, y, name)
     if string.len(y) > 2 then
         y = y - 2000
     end
-    IDNumber, Name = GetAchievementInfo(11162) -- Get Name so we dont have to localize by hand
-    if GetLocale == "enUS" then
-        CurvePls:Print("\124cffffff00\124Hachievement:11162:"
-                .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. m .. ":" .. d .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
-    else
+    IDNumber, Name = GetAchievementInfo(currentKeyMasterId) -- Get Name so we dont have to localize by hand
+    if GetCurrentRegion() == USRegion then
         CurvePls:Print("\124cffffff00\124Hachievement:11162:"
                 .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. d .. ":" .. m .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
+    else
+        CurvePls:Print("\124cffffff00\124Hachievement:11162:"
+                .. string.gsub(UnitGUID("player"), '0x', '') .. ":1:" .. m .. ":" .. d .. ":" .. y .. ":4294967295:4294967295:4294967295:4294967295\124h[" .. Name .. "]\124h\124r")
     end
 end
 
 function InitFrame()
-    local date = C_Calendar.GetDate();
+    local date = C_DateAndTime.GetCurrentCalendarTime();
     local year = date.year;
     local day = date.monthDay;
     local month = date.month;
@@ -97,7 +99,7 @@ function HandleCurve(msg, editbox)
     if msg == 'help' then
         CurvePls:Print("Enter /curve month,day,year for curve achievement, /key month,day,year for keystone master (For Example /curve 6,6,17). \n If no dates are given, the current date will be taken.")
     elseif msg == '' then
-        local date = C_Calendar.GetDate();
+        local date = C_DateAndTime.GetCurrentCalendarTime();
         local year = date.year;
         local day = date.monthDay;
         local month = date.month;
@@ -118,7 +120,7 @@ function HandleKey(msg, editbox)
     if msg == 'help' then
         CurvePls:Print("Enter /curve month,day,year for curve achievement, /key month,day,year for keystone master (For Example /curve 6,6,17). \n If no dates are given, the current date will be taken.")
     elseif msg == '' then
-        local date = C_Calendar.GetDate();
+        local date = C_DateAndTime.GetCurrentCalendarTime();
         local year = date.year;
         local day = date.monthDay;
         local month = date.month;
@@ -146,7 +148,7 @@ function HandleFake(msg, editbox)
     if Name == nil then
         CurvePls:Print("Invalid Achivement ID!")
     elseif string.len(msg) < 6 then
-        local date = C_Calendar.GetDate();
+        local date = C_DateAndTime.GetCurrentCalendarTime();
         local CurrYear = date.year;
         local CurrDay = date.monthDay;
         local CurrMonth = date.month;
